@@ -20,10 +20,10 @@
 								  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     
       
-      <form:input path="username" type="text"  id="inputUserName" placeholder="User Name" />
+      <form:input path="username" type="text"  id="inputUserName" placeholder="User Name"  required="true" />
       <span><form:errors cssClass="error" path="username" /></span>
       
-      	<form:input path="password"  type="password"   id="inputPassword" placeholder="Password" />
+      	<form:input path="password"  type="password"   id="inputPassword" placeholder="Password" required="true" />
       <button type="submit" class="btn btn-group btn-default btn-animated">Log In  </button> 
       <p class="message">Not registered? <a href="register">Create an account</a></p>
   	</form:form>

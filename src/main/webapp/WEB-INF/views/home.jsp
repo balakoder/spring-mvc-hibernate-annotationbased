@@ -13,7 +13,7 @@
 <body>
 
 <div class="jumbotron">
-  <h1>Hello Bala !!!</h1>
+  <h1>Welcome !!!</h1>
   <P> ${message}. </P>
    
   <p><a class="btn btn-primary btn-lg" href="register" role="button">Sign Up</a></p>

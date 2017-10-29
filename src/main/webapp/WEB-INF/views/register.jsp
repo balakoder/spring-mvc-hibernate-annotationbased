@@ -25,11 +25,11 @@
      	
       <form:input path="phone" type="text" class="form-control"  placeholder="phone No" />
      	
-      <form:input path="email"  type="email" class="form-control"  placeholder="Email" />
+      <form:input path="email"  type="email" class="form-control"  placeholder="Email" required="true" />
       
-      <form:input path="username"  type="username" class="form-control"  placeholder="username"   />
+      <form:input path="username"  type="username" class="form-control"  placeholder="username"  required="true" />
       
-     <form:input path="password"  type="password"  class="form-control"   placeholder="Password"   />
+     <form:input path="password"  type="password"  class="form-control"   placeholder="Password" required="true" />
       
      <!--  <label>
 	<input type="checkbox" required> Accept our <a href="#">privacy policy</a> and <a href="#">customer agreement</a>

@@ -212,7 +212,7 @@
 				<version>2.4</version>
 				<configuration>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
-					<warName>spring-mvc-hibernate-annotationbased</warName>
+					<warName>springapp</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
