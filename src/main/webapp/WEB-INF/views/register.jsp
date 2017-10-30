@@ -55,6 +55,7 @@ console.log("hello");
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
 });
-</script> 						  
+</script> 
+	<jsp:include page="footer.jsp"></jsp:include>	
 </body>
 </html>
