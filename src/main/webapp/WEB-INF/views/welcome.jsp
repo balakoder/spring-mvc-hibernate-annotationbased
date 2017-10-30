@@ -1,17 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page session="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
- <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-    
- <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
- <html>
+<html>
 <head>
-	<jsp:include page="./header.jsp"></jsp:include>
+<jsp:include page="./header.jsp"></jsp:include>
 </head>
 <body>
- 
+
 
 
 
@@ -31,12 +31,12 @@
 }
 </style>
 
- <p></p>
+	<p></p>
 	<!-- breadcrumb end -->
 
 	<!-- main-container start -->
 	<!-- ================ -->
-	<c:if test="${message != null }">
+	<c:if test="${message != '' }">
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
@@ -56,11 +56,15 @@
 			<strong>Success!</strong> ${error}
 		</div>
 	</c:if>
-  <a href="register" class="btn btn-group btn-default btn-animated" >Click here to register more </a>
- 
 
+
+	<div class="container">
+		 <p>Home page</p>
+		 
+	</div>
+	<%--
 	<div class="container-fluid">
-		<div class="row">
+	 <div class="row">
 
 		 
 		 
@@ -107,7 +111,7 @@
 				</div>
 
 </div>
-			</div>
- 
+			</div> --%>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
