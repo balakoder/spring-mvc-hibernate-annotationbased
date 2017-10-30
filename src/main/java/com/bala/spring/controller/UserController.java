@@ -128,7 +128,7 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model,WebRequest request, SessionStatus status) {
+	public String logout(Model model,WebRequest request, HttpSession session) {
 		model.addAttribute("title", "Welcome");
 		model.addAttribute("message", "");
 		
@@ -137,9 +137,9 @@ public class UserController {
         if (auth != null){    
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }*/
-		 request.removeAttribute("user", WebRequest.SCOPE_SESSION);
+		session.removeAttribute("user");
         logger.info("logout the user*********************************", "User");
-		return "redirect:/home";
+		return "home";
 
 	}
 	
