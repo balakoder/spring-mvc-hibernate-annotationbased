@@ -22,6 +22,7 @@
 			</button>
 			<strong>Success!</strong> ${message}
 		</div>
+		<a class="nav-link" href="logout">Click Here to logout</a>
 	</c:if>
    
  

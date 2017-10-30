@@ -147,9 +147,18 @@ body {
 		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	</form>
 	</li>
+	
+		 <c:if test="${user != null}">
+		 <li class="nav-item"><a class="nav-link" href="register">Welcome  ${user.username}</a></li>
+	<li> </c:if>
+	
+	<c:if test="${user == null}">
 	<li class="nav-item"><a class="nav-link" href="register">Sign
 			Up</a></li>
 	<li>
+	
+		 </c:if>
+	 
 </ul>
 
 

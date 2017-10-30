@@ -43,6 +43,7 @@
 				<span aria-hidden="true">×</span>
 			</button>
 			<strong>Success!</strong> ${message}
+			<a class="nav-link" href="logout">Click Here to logout</a>
 		</div>
 	</c:if>
 

@@ -36,6 +36,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import com.bala.spring.config.dao.UserDao;
@@ -43,6 +45,7 @@ import com.bala.spring.model.User;
 import com.bala.spring.service.UserService;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
 
 	@Autowired
@@ -98,13 +101,17 @@ public class UserController {
 
 		System.out.println("********inside controller************************for login**********");
 		User user1 = userService.findByUsername(user.getUsername());
-		System.out.println(user.getUsername());
-		boolean flag = userService.authenticateUser(user.getPassword(),user1.getPassword());
-		if(flag)
+		if(user1 != null)
 		{
-			return "redirect:/success";
+			System.out.println(user.getUsername());
+			boolean flag = userService.authenticateUser(user.getPassword(),user1.getPassword());
+			if(flag)
+			{
+				return "redirect:/success";
+			}
+			 	
 		}
-		 
+		
 			model.addAttribute("message", "Invalid Username or password!");
 			return "login";
 		
@@ -121,16 +128,17 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model,HttpServletRequest request, HttpServletResponse response) {
+	public String logout(Model model,WebRequest request, SessionStatus status) {
 		model.addAttribute("title", "Welcome");
 		model.addAttribute("message", "");
 		
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){    
             new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        logger.info("logout the user", "User");
+        }*/
+		 request.removeAttribute("user", WebRequest.SCOPE_SESSION);
+        logger.info("logout the user*********************************", "User");
 		return "redirect:/home";
 
 	}
