@@ -12,15 +12,23 @@
 </head>
 <body>
 
-<div class="jumbotron">
-  <h1>Welcome !!!</h1>
-  <P> ${message}. </P>
+<div class="container">
+  <h5>Welcome !!!</h5>
+  <c:if test="${message != '' }">
+		<div class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<strong>Success!</strong> ${message}
+		</div>
+	</c:if>
    
-  <p><a class="btn btn-primary btn-lg" href="home" role="button">Home</a></p>
+ 
 </div>
  
 
  
- 
+ <jsp:include page="footer.jsp"></jsp:include>	
 </body>
 </html>
