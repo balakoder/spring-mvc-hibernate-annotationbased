@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+ 
  
 
 import com.bala.spring.model.User;
@@ -32,8 +32,7 @@ public class UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	//@Autowired
-	//private BCryptPasswordEncoder bCryptPasswordEncoder;
+	 
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	CustomPasswordEncoder passencoder = new CustomPasswordEncoder();
@@ -84,8 +83,7 @@ public class UserDao {
 	public boolean authenticateUser(String userpass, String dbpass) {
 
 		String userp = passencoder.encode(userpass);
-
-		//String dbp = bCryptPasswordEncoder.encode(userpass);
+ 
 		
 		logger.info("****************printing passwords*****************************.", "passwords");
 
