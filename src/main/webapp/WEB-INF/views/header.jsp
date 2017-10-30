@@ -148,16 +148,16 @@ body {
 	</form>
 	</li>
 	
-		 <c:if test="${user != null}">
-		 <li class="nav-item"><a class="nav-link" href="logout">Welcome  ${user.username} Logout</a></li>
-	<li> </c:if>
-	
-	<c:if test="${user == null}">
+		 
+	<%-- 	 <li class="nav-item"><a class="nav-link" href="logout">Welcome  ${user.username} Logout</a></li>
+	<li>  
+	 --%>
+ 
 	<li class="nav-item"><a class="nav-link" href="register">Sign
 			Up</a></li>
 	<li>
 	
-		 </c:if>
+	 
 	 
 </ul>
 

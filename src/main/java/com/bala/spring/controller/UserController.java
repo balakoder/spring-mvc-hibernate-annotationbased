@@ -45,7 +45,7 @@ import com.bala.spring.model.User;
 import com.bala.spring.service.UserService;
 
 @Controller
-@SessionAttributes("user")
+ @SessionAttributes("user")
 public class UserController {
 
 	@Autowired
