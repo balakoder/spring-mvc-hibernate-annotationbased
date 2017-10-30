@@ -83,20 +83,17 @@ public class UserDao {
 	public boolean authenticateUser(String userpass, String dbpass) {
 
 		String userp = passencoder.encode(userpass);
- 
+
+        boolean cs = passencoder.matches(userpass, dbpass);
 		
 		logger.info("****************printing passwords*****************************.", "passwords");
 
 		System.out.println(userpass);
 		System.out.println(dbpass);
 		System.out.println(userp);
+		return cs;
 	
-   
-		if (userp.equals(dbpass)) {
-			return true;
-		} else {
-			return false;
-		}
+        
 		
 	}
 
