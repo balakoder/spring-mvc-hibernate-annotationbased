@@ -94,10 +94,19 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPost(Model model) {
+	public String loginPost(@ModelAttribute("user") User user,Model model) {
 
+		System.out.println("********inside controller************************for login**********");
+		User user1 = userService.findByUsername(user.getEmail());
+		boolean flag = userService.authenticateUser(user.getPassword(),user1.getPassword());
+		if(flag)
+		{
+			return "redirect:/success";
+		}
+		 
+			model.addAttribute("message", "Invalid Username or password!");
+			return "login";
 		
-		return "redirect:/success";
 
 	}
 

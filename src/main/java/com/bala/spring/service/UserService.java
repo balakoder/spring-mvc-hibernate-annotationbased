@@ -12,4 +12,6 @@ public interface UserService {
     User findByUsername(String username);
 
     List <User>  getUserList();
+
+	boolean authenticateUser(String userpass,String dbpass);
 }

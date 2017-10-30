@@ -8,13 +8,15 @@ import org.hibernate.criterion.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.sql.DataSource;
- 
+
 import com.bala.spring.model.User;
- 
+import com.bala.spring.util.CustomPasswordEncoder;
+
 import javax.transaction.Transactional;
- 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,27 +37,32 @@ import org.slf4j.LoggerFactory;
 public class UserDao {
 
 	@Autowired
-    private SessionFactory sessionFactory;
- 
-   
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
- 
-	 protected Session getSession() {
-	        return sessionFactory.getCurrentSession();
-	    }
-	 
+
+	CustomPasswordEncoder passencoder = new CustomPasswordEncoder();
+
+	protected Session getSession() {
+
+		return sessionFactory.getCurrentSession();
+	}
+
 	public void save(User user) {
 		logger.info("****************save user*****************************.", "save");
+		String pass = bCryptPasswordEncoder.encode(user.getPassword());
+		user.setPassword(pass);
+		user.setPasswordConfirm(pass);
 		getSession().save(user);
 		getSession().flush();
 		return;
 	}
 
-	/*public void delete(User user) {
-		getSession().delete(user);
-		return;
-	}
-*/
+	/*
+	 * public void delete(User user) { getSession().delete(user); return; }
+	 */
 	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		return getSession().createQuery("from User").list();
@@ -77,26 +84,45 @@ public class UserDao {
 
 	public List<User> getUserList() {
 		// TODO Auto-generated method stub
-		List<User>   users =   getSession().createCriteria(User.class).list();
+		List<User> users = getSession().createCriteria(User.class).list();
 		return users;
 	}
 
-/*	public User getById(String id) {
-		return (User) getSession().get(User.class, id);
+	public boolean authenticateUser(String userpass, String dbpass) {
+
+		String userp = bCryptPasswordEncoder.encode(userpass);
+
+		//String dbp = bCryptPasswordEncoder.encode(userpass);
+		
+		logger.info("****************printing passwords*****************************.", "passwords");
+
+		System.out.println(userpass);
+		System.out.println(dbpass);
+		System.out.println(userp);
+	
+   
+		if (userp.equals(dbpass)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
-	public void update(User user) {
-		getSession().update(user);
-		return;
-	}
-
-	public HashSet<Role> getAllRoles() {
-		logger.info("****************inside  getAllRoles*****************************.", "getAllRoles");
-		List users = getSession().createCriteria(Role.class).list();
-
-		Set<Role> roles = new HashSet<Role>(users);
-		return (HashSet<Role>) roles;
-
-	}*/
+	/*
+	 * public User getById(String id) { return (User)
+	 * getSession().get(User.class, id); }
+	 * 
+	 * public void update(User user) { getSession().update(user); return; }
+	 * 
+	 * public HashSet<Role> getAllRoles() { logger.
+	 * info("****************inside  getAllRoles*****************************.",
+	 * "getAllRoles"); List users =
+	 * getSession().createCriteria(Role.class).list();
+	 * 
+	 * Set<Role> roles = new HashSet<Role>(users); return (HashSet<Role>) roles;
+	 * 
+	 * }
+	 */
 
 }

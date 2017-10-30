@@ -14,6 +14,22 @@
 
 <body>
 
+
+<div class="container">
+   
+  <c:if test="${message != null }">
+		<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			  ${message}
+		</div>
+	</c:if>
+   
+ 
+</div>
+
  <div class="login-page">
   <div class="form">
   <form:form method="POST" action="${contextPath}/login" class="login-form"  modelAttribute="user">

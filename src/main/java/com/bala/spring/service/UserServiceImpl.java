@@ -5,6 +5,7 @@ import com.bala.spring.config.dao.UserDao;
 import com.bala.spring.model.User;
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,7 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     */
     
-    //@Autowired
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
+  
 
     @Override
     public void save(User user) {
@@ -39,6 +39,18 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userDao.getByUsername(username);
     }
+    
+    @Override
+    public boolean authenticateUser(String userpass,String dbpass) {
+    	
+    	
+    	return userDao.authenticateUser(userpass,dbpass);
+    	
+    	
+        
+    }
+    
+    
 
 	@Override
 	public List<User> getUserList() {
