@@ -97,7 +97,8 @@ public class UserController {
 	public String loginPost(@ModelAttribute("user") User user,Model model) {
 
 		System.out.println("********inside controller************************for login**********");
-		User user1 = userService.findByUsername(user.getEmail());
+		User user1 = userService.findByUsername(user.getUsername());
+		System.out.println(user.getUsername());
 		boolean flag = userService.authenticateUser(user.getPassword(),user1.getPassword());
 		if(flag)
 		{
