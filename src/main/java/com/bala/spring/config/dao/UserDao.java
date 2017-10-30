@@ -4,30 +4,23 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
+ 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import javax.sql.DataSource;
+ 
 
 import com.bala.spring.model.User;
 import com.bala.spring.util.CustomPasswordEncoder;
 
 import javax.transaction.Transactional;
 
-import java.util.HashSet;
+ 
 import java.util.List;
-import java.util.Set;
-import java.util.ArrayList;
-import java.util.Date;
-
-import javax.transaction.Transactional;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+ 
+ 
+ 
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +32,8 @@ public class UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	//@Autowired
+	//private BCryptPasswordEncoder bCryptPasswordEncoder;
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	CustomPasswordEncoder passencoder = new CustomPasswordEncoder();
@@ -52,7 +45,7 @@ public class UserDao {
 
 	public void save(User user) {
 		logger.info("****************save user*****************************.", "save");
-		String pass = bCryptPasswordEncoder.encode(user.getPassword());
+		String pass = passencoder.encode(user.getPassword());
 		user.setPassword(pass);
 		user.setPasswordConfirm(pass);
 		getSession().save(user);
@@ -90,7 +83,7 @@ public class UserDao {
 
 	public boolean authenticateUser(String userpass, String dbpass) {
 
-		String userp = bCryptPasswordEncoder.encode(userpass);
+		String userp = passencoder.encode(userpass);
 
 		//String dbp = bCryptPasswordEncoder.encode(userpass);
 		
