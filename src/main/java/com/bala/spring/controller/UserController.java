@@ -45,7 +45,6 @@ import com.bala.spring.model.User;
 import com.bala.spring.service.UserService;
 
 @Controller
- @SessionAttributes("user")
 public class UserController {
 
 	@Autowired
@@ -64,6 +63,7 @@ public class UserController {
 	public String Register(@ModelAttribute("user") User user, Model model) {
 		// userValidator.validate(userForm, bindingResult);
 		logger.info("before binding the new user.", "User");
+		model.addAttribute("user", new User());
 		model.addAttribute("title", "Login");
 		// logger.info("before saving the new user.", "User");
 		// userService.save(user);
